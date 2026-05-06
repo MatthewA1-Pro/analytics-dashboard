@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Check Authentication
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseApp.auth.getSession();
     if (session) {
         window.location.href = 'dashboard.html';
         return;
     }
 
     // Listen for auth events (e.g. password recovery)
-    supabase.auth.onAuthStateChange((event, session) => {
+    supabaseApp.auth.onAuthStateChange((event, session) => {
         if (event === 'PASSWORD_RECOVERY') {
             showForm(resetForm);
         } else if (event === 'SIGNED_IN') {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const errorEl = document.getElementById('loginError');
         
         toggleLoading(true);
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabaseApp.auth.signInWithPassword({ email, password });
         toggleLoading(false);
 
         if (error) {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         toggleLoading(true);
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabaseApp.auth.signUp({
             email,
             password,
             options: { data: { full_name: name } }
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const successEl = document.getElementById('forgotSuccess');
 
         toggleLoading(true);
-        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        const { error } = await supabaseApp.auth.resetPasswordForEmail(email, {
             redirectTo: window.location.origin + window.location.pathname
         });
         toggleLoading(false);
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const successEl = document.getElementById('resetSuccess');
         
         toggleLoading(true);
-        const { error } = await supabase.auth.updateUser({ password: newPassword });
+        const { error } = await supabaseApp.auth.updateUser({ password: newPassword });
         toggleLoading(false);
 
         if (error) {

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // Check Authentication
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await supabaseApp.auth.getSession();
     
     if (!session) {
         window.location.href = 'index.html';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Logout Logic
     document.getElementById('logoutBtn').addEventListener('click', async () => {
-        await supabase.auth.signOut();
+        await supabaseApp.auth.signOut();
         window.location.href = 'index.html';
     });
 
