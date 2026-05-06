@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Authentication</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Loading overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="auth-box">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Enter your details to access the dashboard.</p>
+            <form id="login">
+                <div class="input-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="you@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+                <div class="error-message" id="loginError"></div>
+                <button type="submit" class="btn-primary">Sign In</button>
+            </form>
+            <div class="auth-links">
+                <a href="#" id="linkToForgot">Forgot Password?</a>
+                <p>Don't have an account? <a href="#" id="linkToSignup">Sign Up</a></p>
+            </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupForm" class="auth-box hidden">
+            <h2>Create Account</h2>
+            <p class="subtitle">Join us to start analyzing your data.</p>
+            <form id="signup">
+                <div class="input-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required placeholder="you@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required minlength="6" placeholder="At least 6 characters">
+                </div>
+                <div class="error-message" id="signupError"></div>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+            <div class="auth-links">
+                <p>Already have an account? <a href="#" id="linkToLogin">Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Verification Message Form -->
+        <div id="verifyForm" class="auth-box hidden">
+            <h2>Verify Your Email</h2>
+            <p class="subtitle" id="verifyMessage">We've sent a verification link to your email.</p>
+            <button id="simulateVerifyBtn" class="btn-primary">Simulate Email Verification Click</button>
+            <div class="auth-links">
+                <p><a href="#" id="linkToLoginFromVerify">Back to Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgotForm" class="auth-box hidden">
+            <h2>Reset Password</h2>
+            <p class="subtitle">Enter your email to receive a reset link.</p>
+            <form id="forgot">
+                <div class="input-group">
+                    <label for="forgotEmail">Email</label>
+                    <input type="email" id="forgotEmail" required placeholder="you@example.com">
+                </div>
+                <div class="success-message hidden" id="forgotSuccess">Reset link sent!</div>
+                <div class="error-message" id="forgotError"></div>
+                <button type="submit" class="btn-primary">Send Reset Link</button>
+            </form>
+            <button id="simulateResetBtn" class="btn-secondary hidden" style="margin-top: 15px;">Simulate Reset Link Click</button>
+            <div class="auth-links">
+                <p>Remember your password? <a href="#" id="linkToLoginFromForgot">Sign In</a></p>
+            </div>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="resetForm" class="auth-box hidden">
+            <h2>Set New Password</h2>
+            <p class="subtitle">Enter your new password below.</p>
+            <form id="reset">
+                <div class="input-group">
+                    <label for="resetPassword">New Password</label>
+                    <input type="password" id="resetPassword" required minlength="6" placeholder="••••••••">
+                </div>
+                <div class="success-message hidden" id="resetSuccess">Password reset successful!</div>
+                <div class="error-message" id="resetError"></div>
+                <button type="submit" class="btn-primary">Update Password</button>
+            </form>
+            <div class="auth-links">
+                <p><a href="#" id="linkToLoginFromReset">Back to Sign In</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
